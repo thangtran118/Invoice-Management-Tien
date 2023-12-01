@@ -67,7 +67,8 @@ public:
 
         std::cout << "Enter issue date (DD/MM/YYYY): ";
         std::cin >> issueDate;
-        while(!DateUtility::isValidDate(issueDate)) {
+        while (!DateUtility::isValidDate(issueDate))
+        {
             std::cout << "The date format is invalid or the date is later than the current date.\nEnter issue date (DD/MM/YYYY): ";
             std::cin >> issueDate;
         }
@@ -96,7 +97,8 @@ public:
         invoices[index].display();
     }
 
-    void addInvoice(const Invoice& invoice) {
+    void addInvoice(const Invoice &invoice)
+    {
         invoices.push_back(invoice);
     }
 
@@ -160,8 +162,8 @@ public:
         }
         std::cerr << "\nInvoice with ID " << id << " not found.";
     }
-    
-    void deleteInvoiceByCustomerName(const std::string& customerName)
+
+    void deleteInvoiceByCustomerName(const std::string &customerName)
     {
         for (auto it = invoices.begin(); it != invoices.end(); ++it)
         {
@@ -196,7 +198,7 @@ public:
         return -1;
     }
 
-    int searchInvoicePositionByCustomerName(const std::string& customerName)
+    int searchInvoicePositionByCustomerName(const std::string &customerName)
     {
         for (int i = 0; i < invoices.size(); ++i)
         {
@@ -208,12 +210,14 @@ public:
         return -1;
     }
 
-    std::vector<Invoice> searchInvoiceByIssueDateRange(const std::string& startDate, const std::string& endDate)
+    std::vector<Invoice> searchInvoiceByIssueDateRange(const std::string &startDate, const std::string &endDate)
     {
         std::vector<Invoice> result;
-        for (const auto& invoice : invoices)
+        for (const auto &invoice : invoices)
         {
-            if (DateUtility::compareDates(invoice.getIssueDate(), startDate) >= 0 && DateUtility::compareDates(invoice.getIssueDate(), endDate) <= 0)
+            if (
+                DateUtility::compareDates(invoice.getIssueDate(), startDate) >= 0 
+                && DateUtility::compareDates(invoice.getIssueDate(), endDate) <= 0)
             {
                 result.push_back(invoice);
             }
@@ -223,33 +227,28 @@ public:
 
     void sortInvoicesByTotalValueAscending()
     {
-        std::sort(invoices.begin(), invoices.end(), [](const Invoice& invoice1, const Invoice& invoice2) {
-            return invoice1.getTotalValue() < invoice2.getTotalValue();
-        });
+        std::sort(invoices.begin(), invoices.end(), [](const Invoice &invoice1, const Invoice &invoice2)
+                  { return invoice1.getTotalValue() < invoice2.getTotalValue(); });
     }
 
     void sortInvoicesByTotalValueDescending()
     {
-        std::sort(invoices.begin(), invoices.end(), [](const Invoice& invoice1, const Invoice& invoice2) {
-            return invoice1.getTotalValue() > invoice2.getTotalValue();
-        });
+        std::sort(invoices.begin(), invoices.end(), [](const Invoice &invoice1, const Invoice &invoice2)
+                  { return invoice1.getTotalValue() > invoice2.getTotalValue(); });
     }
 
     void sortInvoicesByIssueDateAscending()
     {
-        std::sort(invoices.begin(), invoices.end(), [](const Invoice& invoice1, const Invoice& invoice2) {
-            return DateUtility::compareDates(invoice1.getIssueDate(), invoice2.getIssueDate()) < 0;
-        });
+        std::sort(invoices.begin(), invoices.end(), [](const Invoice &invoice1, const Invoice &invoice2)
+                  { return DateUtility::compareDates(invoice1.getIssueDate(), invoice2.getIssueDate()) < 0; });
     }
 
     void sortInvoicesByIssueDateDescending()
     {
-        std::sort(invoices.begin(), invoices.end(), [](const Invoice& invoice1, const Invoice& invoice2) {
-            return DateUtility::compareDates(invoice1.getIssueDate(), invoice2.getIssueDate()) > 0;
-        });
+        std::sort(invoices.begin(), invoices.end(), [](const Invoice &invoice1, const Invoice &invoice2)
+                  { return DateUtility::compareDates(invoice1.getIssueDate(), invoice2.getIssueDate()) > 0; });
     }
 };
-
 
 void displayMenu()
 {
@@ -289,199 +288,201 @@ int main()
 
         switch (choice)
         {
-            case -1:
-                return 0;
-            case 0:
-                manager.addInvoice(Invoice(12, "Customer 12", "12/01/2021", 1200));
-                manager.addInvoice(Invoice(7, "Customer 7", "07/01/2021", 700));
-                manager.addInvoice(Invoice(8, "Customer 8", "08/01/2021", 800));
-                manager.addInvoice(Invoice(1, "Customer 1", "01/01/2021", 100));
-                manager.addInvoice(Invoice(9, "Customer 9", "09/01/2021", 900));
-                manager.addInvoice(Invoice(11, "Customer 11", "11/01/2021", 1100));
-                manager.addInvoice(Invoice(2, "Customer 2", "02/01/2021", 200));
-                manager.addInvoice(Invoice(3, "Customer 3", "03/01/2021", 300));
-                manager.addInvoice(Invoice(4, "Customer 4", "04/01/2021", 400));
-                manager.addInvoice(Invoice(5, "Customer 5", "05/01/2021", 500));
-                manager.addInvoice(Invoice(6, "Customer 6", "06/01/2021", 600));
-                manager.addInvoice(Invoice(10, "Customer 10", "10/01/2021", 1000));
-                break;
-            case 1:
+        case -1:
+            return 0;
+        case 0:
+            manager.addInvoice(Invoice(12, "Customer 12", "12/01/2021", 1200));
+            manager.addInvoice(Invoice(7, "Customer 7", "07/01/2021", 700));
+            manager.addInvoice(Invoice(8, "Customer 8", "08/01/2021", 800));
+            manager.addInvoice(Invoice(1, "Customer 1", "01/01/2021", 100));
+            manager.addInvoice(Invoice(9, "Customer 9", "09/01/2021", 900));
+            manager.addInvoice(Invoice(11, "Customer 11", "11/01/2021", 1100));
+            manager.addInvoice(Invoice(2, "Customer 2", "02/01/2021", 200));
+            manager.addInvoice(Invoice(3, "Customer 3", "03/01/2021", 300));
+            manager.addInvoice(Invoice(4, "Customer 4", "04/01/2021", 400));
+            manager.addInvoice(Invoice(5, "Customer 5", "05/01/2021", 500));
+            manager.addInvoice(Invoice(6, "Customer 6", "06/01/2021", 600));
+            manager.addInvoice(Invoice(10, "Customer 10", "10/01/2021", 1000));
+            break;
+        case 1:
+        {
+            std::cout << "\n----- All invoices -----\n\n";
+            manager.displayAll();
+            break;
+        }
+        case 2:
+        {
+            std::cout << "\n----- Add Invoice at End -----\n\n";
+            manager.addInvoice(manager.enterInvoiceData());
+            std::cout << "\nInvoice added.";
+            break;
+        }
+        case 3:
+        {
+            std::cout << "\n----- Add Invoice at Start -----\n\n";
+            manager.addInvoiceAtStart(manager.enterInvoiceData());
+            std::cout << "\nInvoice added.";
+            break;
+        }
+        case 4:
+        {
+            std::cout << "\n----- Add Invoice at Specific Position -----\n\n";
+            int position;
+            std::cout << "Enter position (starting from 0): ";
+            std::cin >> position;
+            manager.addInvoiceAtPosition(manager.enterInvoiceData(), position);
+            std::cout << "\nInvoice added.";
+            break;
+        }
+        case 5:
+        {
+            std::cout << "\n----- Edit Invoice by ID -----\n\n";
+            int id;
+            std::cout << "Enter ID: ";
+            std::cin >> id;
+            manager.editInvoiceById(id);
+            std::cout << "\nInvoice edited.";
+            break;
+        }
+        case 6:
+        {
+            std::cout << "\n----- Change Invoice Position in the List -----\n\n";
+            int id, newPosition;
+            std::cout << "Enter ID: ";
+            std::cin >> id;
+            std::cout << "Enter new position (starting from 0): ";
+            std::cin >> newPosition;
+            manager.changeInvoicePosition(id, newPosition);
+            std::cout << "\nInvoice position changed.";
+            break;
+        }
+        case 7:
+        {
+            std::cout << "\n----- Delete Invoice by ID -----\n\n";
+            int id;
+            std::cout << "Enter ID: ";
+            std::cin >> id;
+            manager.deleteInvoiceById(id);
+            std::cout << "\nInvoice deleted.\n";
+            break;
+        }
+        case 8:
+        {
+            std::cout << "\n----- Delete Invoice by Customer Name -----\n\n";
+            std::string customerName;
+            std::cout << "Enter customer name: ";
+            std::getline(std::cin >> std::ws, customerName);
+            manager.deleteInvoiceByCustomerName(customerName);
+            std::cout << "\nInvoice deleted.\n";
+            break;
+        }
+        case 9:
+        {
+            std::cout << "\n----- Delete Invoice at a Specific Position -----\n\n";
+            int position;
+            std::cout << "Enter position (starting from 0): ";
+            std::cin >> position;
+            manager.deleteInvoiceAtPosition(position);
+            std::cout << "\nInvoice deleted.";
+            break;
+        }
+        case 10:
+        {
+            std::cout << "\n----- Search for Invoice Position by ID -----\n\n";
+            int id;
+            std::cout << "Enter ID: ";
+            std::cin >> id;
+            int position = manager.searchInvoicePositionById(id);
+            if (position == -1)
             {
-                std::cout << "\n----- All invoices -----\n\n";
-                manager.displayAll();
-                break;
+                std::cout << "Invoice with ID " << id << " not found.\n";
             }
-            case 2:
+            else
             {
-                std::cout << "\n----- Add Invoice at End -----\n\n";
-                manager.addInvoice(manager.enterInvoiceData());
-                std::cout << "\nInvoice added.";
-                break;
+                std::cout << "Invoice with ID " << id << " found at position " << position << ".\n";
             }
-            case 3:
+            break;
+        }
+        case 11:
+        {
+            std::cout << "\n----- Search for Invoice by Customer Name -----\n\n";
+            std::string customerName;
+            std::cout << "Enter customer name: ";
+            std::getline(std::cin >> std::ws, customerName);
+            int index = manager.searchInvoicePositionByCustomerName(customerName);
+            if (index == -1)
             {
-                std::cout << "\n----- Add Invoice at Start -----\n\n";
-                manager.addInvoiceAtStart(manager.enterInvoiceData());
-                std::cout << "\nInvoice added.";
-                break;
+                std::cout << "\nInvoice with customer name " << customerName << " not found.\n";
             }
-            case 4:
+            else
             {
-                std::cout << "\n----- Add Invoice at Specific Position -----\n\n";
-                int position;
-                std::cout << "Enter position (starting from 0): ";
-                std::cin >> position;
-                manager.addInvoiceAtPosition(manager.enterInvoiceData(), position);
-                std::cout << "\nInvoice added.";
-                break;
+                std::cout << "\nInvoices found:\n";
+                manager.displayInvoiceByIndex(index);
             }
-            case 5:
+            break;
+        }
+        case 12:
+        {
+            std::cout << "\n----- Search for Invoice by Issue Date Range -----\n\n";
+            std::string startDate, endDate;
+            std::cout << "Enter start date (DD/MM/YYYY): ";
+            std::cin >> startDate;
+            while (!DateUtility::isValidDate(startDate))
             {
-                std::cout << "\n----- Edit Invoice by ID -----\n\n";
-                int id;
-                std::cout << "Enter ID: ";
-                std::cin >> id;
-                manager.editInvoiceById(id);
-                std::cout << "\nInvoice edited.";
-                break;
-            }
-            case 6:
-            {
-                std::cout << "\n----- Change Invoice Position in the List -----\n\n";
-                int id, newPosition;
-                std::cout << "Enter ID: ";
-                std::cin >> id;
-                std::cout << "Enter new position (starting from 0): ";
-                std::cin >> newPosition;
-                manager.changeInvoicePosition(id, newPosition);
-                std::cout << "\nInvoice position changed.";
-                break;
-            }
-            case 7:
-            {
-                std::cout << "\n----- Delete Invoice by ID -----\n\n";
-                int id;
-                std::cout << "Enter ID: ";
-                std::cin >> id;
-                manager.deleteInvoiceById(id);
-                std::cout << "\nInvoice deleted.\n";
-                break;
-            }
-            case 8:
-            {
-                std::cout << "\n----- Delete Invoice by Customer Name -----\n\n";
-                std::string customerName;
-                std::cout << "Enter customer name: ";
-                std::getline(std::cin >> std::ws, customerName);
-                manager.deleteInvoiceByCustomerName(customerName);
-                std::cout << "\nInvoice deleted.\n";
-                break;
-            }
-            case 9:
-            {
-                std::cout << "\n----- Delete Invoice at a Specific Position -----\n\n";
-                int position;
-                std::cout << "Enter position (starting from 0): ";
-                std::cin >> position;
-                manager.deleteInvoiceAtPosition(position);
-                std::cout << "\nInvoice deleted.";
-                break;
-            }
-            case 10:
-            {
-                std::cout << "\n----- Search for Invoice Position by ID -----\n\n";
-                int id;
-                std::cout << "Enter ID: ";
-                std::cin >> id;
-                int position = manager.searchInvoicePositionById(id);
-                if (position == -1)
-                {
-                    std::cout << "Invoice with ID " << id << " not found.\n";
-                }
-                else
-                {
-                    std::cout << "Invoice with ID " << id << " found at position " << position << ".\n";
-                }
-                break;
-            }
-            case 11:
-            {
-                std::cout << "\n----- Search for Invoice by Customer Name -----\n\n";
-                std::string customerName;
-                std::cout << "Enter customer name: ";
-                std::getline(std::cin >> std::ws, customerName);
-                int index = manager.searchInvoicePositionByCustomerName(customerName);
-                if (index == -1)
-                {
-                    std::cout << "\nInvoice with customer name " << customerName << " not found.\n";
-                }
-                else
-                {
-                    std::cout << "\nInvoices found:\n";
-                    manager.displayInvoiceByIndex(index);
-                }
-                break;
-            }
-            case 12:
-            {
-                std::cout << "\n----- Search for Invoice by Issue Date Range -----\n\n";
-                std::string startDate, endDate;
-                std::cout << "Enter start date (DD/MM/YYYY): ";
+                std::cout << "\nThe date format is invalid or the date is later than the current date.\nEnter start date (DD/MM/YYYY): ";
                 std::cin >> startDate;
-                while(!DateUtility::isValidDate(startDate)) {
-                    std::cout << "\nThe date format is invalid or the date is later than the current date.\nEnter start date (DD/MM/YYYY): ";
-                    std::cin >> startDate;
-                }
-                std::cout << "Enter end date (DD/MM/YYYY): ";
+            }
+            std::cout << "Enter end date (DD/MM/YYYY): ";
+            std::cin >> endDate;
+            while (!DateUtility::isValidDate(endDate))
+            {
+                std::cout << "\nThe date format is invalid or the date is later than the current date.\nEnter end date (DD/MM/YYYY): ";
                 std::cin >> endDate;
-                while(!DateUtility::isValidDate(endDate)) {
-                    std::cout << "\nThe date format is invalid or the date is later than the current date.\nEnter end date (DD/MM/YYYY): ";
-                    std::cin >> endDate;
-                }
-                std::vector<Invoice> result = manager.searchInvoiceByIssueDateRange(startDate, endDate);
-                if (result.empty())
+            }
+            std::vector<Invoice> result = manager.searchInvoiceByIssueDateRange(startDate, endDate);
+            if (result.empty())
+            {
+                std::cout << "\nNo invoices found.\n";
+            }
+            else
+            {
+                std::cout << "\nInvoices found:\n";
+                for (const auto &invoice : result)
                 {
-                    std::cout << "\nNo invoices found.\n";
+                    invoice.display();
                 }
-                else
-                {
-                    std::cout << "\nInvoices found:\n";
-                    for (const auto& invoice : result)
-                    {
-                        invoice.display();
-                    }
-                }
-                break;
             }
-            case 13:
-            {
-                std::cout << "\n----- Sort Invoices by Total Value (Ascending) -----\n\n";
-                manager.sortInvoicesByTotalValueAscending();
-                std::cout << "Invoices sorted.";
-                break;
-            }
-            case 14:
-            {
-                std::cout << "\n----- Sort Invoices by Total Value (Descending) -----\n\n";
-                manager.sortInvoicesByTotalValueDescending();
-                std::cout << "Invoices sorted.";
-                break;
-            }
-            case 15:
-            {
-                std::cout << "\n----- Sort Invoices by Issue Date (Ascending) -----\n\n";
-                manager.sortInvoicesByIssueDateAscending();
-                break;
-            }
-            case 16:
-            {
-                std::cout << "\n----- Sort Invoices by Issue Date (Descending) -----\n\n";
-                manager.sortInvoicesByIssueDateDescending();
-                break;
-            }
-            default:
-                std::cerr << "Invalid choice.\n";
-                break;
+            break;
+        }
+        case 13:
+        {
+            std::cout << "\n----- Sort Invoices by Total Value (Ascending) -----\n\n";
+            manager.sortInvoicesByTotalValueAscending();
+            std::cout << "Invoices sorted.";
+            break;
+        }
+        case 14:
+        {
+            std::cout << "\n----- Sort Invoices by Total Value (Descending) -----\n\n";
+            manager.sortInvoicesByTotalValueDescending();
+            std::cout << "Invoices sorted.";
+            break;
+        }
+        case 15:
+        {
+            std::cout << "\n----- Sort Invoices by Issue Date (Ascending) -----\n\n";
+            manager.sortInvoicesByIssueDateAscending();
+            break;
+        }
+        case 16:
+        {
+            std::cout << "\n----- Sort Invoices by Issue Date (Descending) -----\n\n";
+            manager.sortInvoicesByIssueDateDescending();
+            break;
+        }
+        default:
+            std::cerr << "Invalid choice.\n";
+            break;
         }
     }
     return 0;
