@@ -5,7 +5,23 @@
 
 bool DateUtility::isValidDate(const std::string& date) {
     int day, month, year;
-    return parseDate(date, day, month, year);
+    if (!parseDate(date, day, month, year)) {
+        return false;
+    }
+
+    // Get the current date
+    auto now = std::chrono::system_clock::now();
+    std::time_t t_now = std::chrono::system_clock::to_time_t(now);
+    std::tm tm_now = *std::localtime(&t_now);
+
+    // Check if the entered date is greater than the current date
+    if (year > (tm_now.tm_year + 1900) || 
+        (year == (tm_now.tm_year + 1900) && month > (tm_now.tm_mon + 1)) || 
+        (year == (tm_now.tm_year + 1900) && month == (tm_now.tm_mon + 1) && day > tm_now.tm_mday)) {
+        return false;
+    }
+
+    return true;
 }
 
 int DateUtility::compareDates(const std::string& date1, const std::string& date2) {

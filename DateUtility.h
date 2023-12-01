@@ -10,10 +10,10 @@
 class DateUtility {
 public:
     /**
-     * @brief Validates if a given date string is in the correct DD/MM/YYYY format.
-     * 
-     * @param date The date string to validate.
-     * @return true if the date is in the correct format, false otherwise.
+     * @brief Checks if a given date string is in the correct DD/MM/YYYY format and not in the future.
+     *
+     * @param date The date string to validate, expected in DD/MM/YYYY format.
+     * @return true if the date is in the correct format and not in the future, false otherwise.
      */
     static bool isValidDate(const std::string& date);
 
