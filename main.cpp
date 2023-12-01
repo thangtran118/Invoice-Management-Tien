@@ -30,10 +30,10 @@ public:
     void setIssueDate(const std::string &newDate) { issueDate = newDate; }
     void setTotalValue(double newValue) { totalValue = newValue; }
 
-    // Other methods
+    // display methods
     void display() const
     {
-        std::cout << "\nID: " << id << ", Customer: " << customerName << ", Date: " << issueDate << ", Amount: " << totalValue;
+        std::cout << "\nID: " << id << ", Customer: " << customerName << ", Date: " << issueDate << ", Total Value: " << totalValue;
     }
 };
 
