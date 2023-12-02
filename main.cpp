@@ -286,6 +286,14 @@ int main()
         std::cout << "\n\nEnter your choice: ";
         std::cin >> choice;
 
+        if (std::cin.fail())
+        {
+            std::cin.clear();
+            std::cin.ignore(32767, '\n');
+            std::cerr << "Invalid choice.\n";
+            continue;
+        }
+
         switch (choice)
         {
         case -1:
